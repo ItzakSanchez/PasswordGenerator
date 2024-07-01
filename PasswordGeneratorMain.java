@@ -1,15 +1,15 @@
 import java.util.*; 
-import java.util.function.Supplier; 
-
-
-
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class PasswordGeneratorMain {
 
 	
 	static String generatePassword(int passLenght, boolean includeLowercase,boolean includeUppercase,boolean includeDigits,boolean includeSpecialchars,String customSpecialChars) {
-		final String  lowercase= "abcdefghijklmnñopqrstuvwxyz";
+		final String  lowercase= "abcdefghijklmnopqrstuvwxyz";
 		final String uppercase ="ABCDEFGHIJKLMNOPQRSTUV";
 		final String digits ="0123456789";
 		final String specialChars ="!#$%&,.-_";
@@ -38,7 +38,13 @@ public class PasswordGeneratorMain {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		/*4. Generador de Contraseñas
+		Descripción: Crea un programa que genere contraseñas aleatorias basadas en criterios como longitud, uso de mayúsculas, minúsculas, números y caracteres especiales.
+		Permite al usuario guardar sus contraseñas generadas en un archivo.
+		*/
+		
+		
 		//VARIABLE DEFINITION
 		int passLen = 0;
 		String tag, inputTextToCompare;
@@ -130,6 +136,48 @@ public class PasswordGeneratorMain {
 		password=generatePassword(passLen,includeLowercase, includeUppercase, includeDigits, includeSpecialChar,customSpecialChars);
 		System.out.println("Password: "+password);
 		scanner.close();
-	}
+		
+		//GET USERS PATH
+		String path="";
+        String command="powershell -command \"[Environment]::GetFolderPath('\"Desktop\"')\"";
+        try {
+            Process process = Runtime.getRuntime().exec(command);
+            String line;
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+            while ((line = reader.readLine()) != null) {
+                path= line;
 
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+        //WRITE ON FILE
+        
+		try {
+			 File myObj = new File(path+"\\Password.txt");
+		      if (myObj.createNewFile()) {
+		        System.out.println("File created: " + myObj.getName());
+		      } else {
+		        System.out.println("File already exists.");
+		      }
+		} catch (IOException e) {
+		 System.out.println("An error occurred.");
+	      e.printStackTrace();
+		}
+		System.out.println(path+"\\Password.txt");
+	      try {
+	    	  FileWriter fWrite = new FileWriter(path+"\\Password.txt");
+	    	  fWrite.write(password);
+	    	  fWrite.close();
+	      } catch (IOException ee) {
+	    	  System.out.println("An error ocurred.");
+	    	  ee.printStackTrace();
+	      }
+		
+	}
+	
 }
