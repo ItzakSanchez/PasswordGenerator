@@ -38,12 +38,7 @@ public class PasswordGeneratorMain {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*4. Generador de Contraseñas
-		Descripción: Crea un programa que genere contraseñas aleatorias basadas en criterios como longitud, uso de mayúsculas, minúsculas, números y caracteres especiales.
-		Permite al usuario guardar sus contraseñas generadas en un archivo.
-		*/
-		
+		// TODO Auto-generated method stub	
 		//VARIABLE DEFINITION
 		int passLen = 0;
 		String tag, inputTextToCompare;
@@ -138,7 +133,3 @@ public class PasswordGeneratorMain {
 	}
 
 }
-
-//NOTAS, USAR CARACTERES EN LUGAR DE CODIGO ASCII - DEFINIR LAS LISTAS POR TIPO
-//COMBINARLA EN UNA LISTA DE CARACTERES A UTILIZAR  CON .APPEND() -  GENERAR FUNCION Y SOLO PASAR PARAMETROS
-// GENERAR LISTA DE CARACTERES PERSONALIZADOS
